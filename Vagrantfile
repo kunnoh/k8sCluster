@@ -17,6 +17,7 @@ Vagrant.configure("2") do |config|
       lv.nested = true
       lv.cpus = 1
     end
+    kmaster.vm.provision "shell", path: "scripts/k8s_master_setup.sh"
   end
 
   # Kubernetes worker nodes
@@ -33,6 +34,7 @@ Vagrant.configure("2") do |config|
         lv.nested = true
         lv.cpus = 1
       end
+      workerNode.vm.provision "shell", path: "scripts/k8s_worker_setup.sh"
     end   
   end
 end
